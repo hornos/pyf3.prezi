@@ -1,0 +1,17 @@
+.DS*
+*.old
+*.sqlite
+*.pyc
+_*
+!__init__.py
+scr/*
+pkg/*
+*.so
+*.o
+lib/kernel/vsueig.py
+lib/kernel/numpy.i
+lib/kernel/build
+*_wrap.*
+
+
+
