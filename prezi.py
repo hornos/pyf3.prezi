@@ -40,7 +40,9 @@ class UI:
 
   def shift(self,x1,y1,x2,y2):
     self.clickdn(x1,y1)
+    time.sleep( self.wait )
     self.drag(x2,y2)
+    time.sleep( self.wait )
     self.clickup(x2,y2)
     time.sleep( self.wait )
 
@@ -162,3 +164,36 @@ class Giotto:
 
 # end class
 
+# TODO: Shape class
+class SectioAurea:
+  def __init__( self, origo, a, b ):
+    self.origo = origo
+    self.a = a
+    self.b = b
+
+  def draw( self, zui ):
+    zui.shapes(1)
+
+    zui.ui.click(214,277,2)
+    zui.ui.clickdn(self.origo[0],self.origo[1])
+    zui.ui.clickdn(self.origo[0]+1,self.origo[1])
+    zui.ui.clickdn(self.origo[0]-1,self.origo[1])
+
+    for i in range(0,760,20):
+      phi = i/360.0*6.28
+      r = self.a * math.exp( self.b * phi )
+      a1 = self.origo[0] + r * math.cos( phi )
+      a2 = self.origo[1] - r * math.sin( phi )
+      if i == 0:
+        a01 = a1
+        a02 = a2
+      zui.ui.move(a1,a2)
+    zui.ui.clickup(a1,a2)
+
+    zui.ui.click(311,235)
+    zui.ui.click( a01, a02 )
+    zui.ui.click( a01, a02 )
+
+    zui.back(2)
+
+# end class
